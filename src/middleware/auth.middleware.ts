@@ -7,6 +7,7 @@ export interface AuthRequest extends Request {
     id: string;
     role: 'user' | 'admin';
   };
+  file?: Express.Multer.File; // Multer uploaded file
 }
 
 export const protect = (
@@ -49,6 +50,7 @@ export const authorize = (...roles: ('user' | 'admin')[]) => {
         message: 'Forbidden',
       });
     }
+
     next();
   };
 };
